@@ -1,8 +1,8 @@
 # SpaceTime 🌌⏱️
 
-Code for SpaceTime, a neural net for time series. Inspired by state-**space**s for **time** series modeling.
+Code for SpaceTime, a neural net architecture for time series. Named after state-**space** models for **time** series forecasting and classification.
 
-Cousin of S4, S4D, DSS, and H3. Descendent of LSSL. Expressive autoregressive modeling + fast flexible decoding (forecasting) ftw. 
+Cousin of S4, S4D, DSS, and H3. Descendent of LSSL. Expressive autoregressive modeling + fast flexible decoding (i.e., forecasting) ftw. 
 
 Proposed in Effectively Modeling Time Series with Simple Discrete State Spaces, ICLR 2023. 
 
@@ -10,8 +10,8 @@ Proposed in Effectively Modeling Time Series with Simple Discrete State Spaces, 
 
 
 Paper links:     
-* [ArXiv]()   
-* [OpenReview](https://openreview.net/forum?id=2EpjkjzdCAa&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2023%2FConference%2FAuthors%23your-submissions))  
+* [ArXiv](https://arxiv.org/abs/2303.09489)   
+* [OpenReview](https://openreview.net/forum?id=2EpjkjzdCAa)  
 
 ## Abstract
 Time series modeling is a well-established problem, which often requires that methods (1) expressively represent complicated dependencies, (2) forecast long horizons, and (3) efficiently train over long sequences. State-space models (SSMs) are classical models for time series, and prior works combine SSMs with deep learning layers for efficient sequence modeling. However, we find fundamental limitations with these prior approaches, proving their SSM representations cannot express autoregressive time series processes. We thus introduce SPACETIME, a new state-space time series architecture that improves all three criteria. For expressivity, we propose a new SSM parameterization based on the companion matrix—a canonical representation for discrete-time processes—which enables SPACETIME’s SSM layers to learn desirable autoregressive processes. For long horizon forecasting, we introduce a “closed-loop” variation of the companion SSM, which enables SPACETIME to predict many future time-steps by generating its own layer-wise inputs. For efficient training and inference, we introduce an algorithm that reduces the memory and compute of a forward pass with the companion matrix. With sequence length ℓ and state-space size d, we go from $O(dℓ)$ na¨ıvely to $O(d +ℓ)$. In experiments, our contributions lead to state-of-the-art results on extensive and diverse benchmarks, with best or second-best AUROC on 6 / 7 ECG and speech time series classification, and best MSE on 14 / 16 Informer forecasting tasks. Furthermore, we find SPACETIME (1) fits AR(p) processes that prior deep SSMs fail on, (2) forecasts notably more accurately on longer horizons than prior state-of-the-art, and (3) speeds up training on real-world ETTh1 data by 73% and 80% relative wall-clock time over Transformers and LSTMs.
@@ -35,7 +35,12 @@ Data for the Informer benchmark can be downloaded from [https://github.com/zhouh
 ./dataloaders/data/informer/ettm/ETTm2.csv
 ```
 
-## Training scripts
+## Usage
+
+### Colab demo
+We include an [example Colab notebook](https://colab.research.google.com/drive/1dyR7ZGnjNfS2GMjRUfDzujQLhxSo-Xsk?usp=sharing) walking through how to train and forecast a SpaceTime model on financial time series. For fun, we also provide a quick demo on how to power a trading bot with SpaceTime forecasts (probably with some bugs). Feel free to extend it and have fun. *None of this is financial advice!*
+
+### Training scripts
 Sample scripts for training models on the Informer benchmark are provided below. For a complete set of arguments, please see `./setup/args.py`. For an overview of key command-line arguments, please see the `Experiment arguments` section below.
 
 ```
